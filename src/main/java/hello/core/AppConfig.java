@@ -22,7 +22,7 @@ public class AppConfig {
 	 * 그것이 스프링이 하는 일
 	 */
 
-	@Bean
+	@Bean(name = "memberService")
 	public MemberService memberService() {
 //		System.out.println("AppConfig.memberService");
 		return new MemberServiceImpl(memberRepository());

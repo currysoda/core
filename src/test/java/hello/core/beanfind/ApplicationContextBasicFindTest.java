@@ -10,6 +10,8 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class ApplicationContextBasicFindTest {
+	
+	// 스프링 컨테이너 생성
 	AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
 	@Test
@@ -41,7 +43,7 @@ public class ApplicationContextBasicFindTest {
 	}
 
 	@Test
-	@DisplayName("빈 이름으로 조회X")
+	@DisplayName("빈 이름으로 조회, 그러나 존재하지 않는 이름")
 	void findBeanByNameX() {
 //		MemberService memberService = ac.getBean("tempfailname", MemberService.class);
 //		System.out.println("memberService = " + memberService);

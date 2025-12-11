@@ -7,8 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.stereotype.Repository;
 
 @Component
+@Repository
 @Primary
 public class MemoryMemberRepository implements MemberRepository {
 

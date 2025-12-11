@@ -15,8 +15,12 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Map;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationContextSameBeanFindTest {
+	
+	// 스프링 컨테이너 생성
 	AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SameBeanConfig.class);
 
 	@Test
@@ -31,7 +35,7 @@ public class ApplicationContextSameBeanFindTest {
 	@DisplayName("타입으로 조회시 같은 타입이 둘 이상 있으면, 빈 이름을 저장하면 된다")
 	void findBeanByBeanName() {
 		MemberRepository bean = ac.getBean("memberRepository1", MemberRepository.class);
-		org.assertj.core.api.Assertions.assertThat(bean).isInstanceOf(MemberRepository.class);
+		assertThat(bean).isInstanceOf(MemberRepository.class);
 
 	}
 
@@ -39,14 +43,17 @@ public class ApplicationContextSameBeanFindTest {
 	@DisplayName("특정 타입을 모두 조회하기")
 	void findAllBeanByType() {
 		Map<String, MemberRepository> beansOfType = ac.getBeansOfType(MemberRepository.class);
+		
 		for(String key : beansOfType.keySet()) {
 			System.out.println("key = " + key + " value = " + beansOfType.get(key));
 		}
+		
 		System.out.println("beansOfType = " + beansOfType);
-		org.assertj.core.api.Assertions.assertThat(beansOfType.size()).isEqualTo(2);
+		
+		assertThat(beansOfType.size()).isEqualTo(2);
 	}
 
-
+	// 임시로 만든 Configuration
 	@Configuration
 	static class SameBeanConfig {
 		@Bean
