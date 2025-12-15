@@ -5,6 +5,7 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemberServiceImpl;
 import hello.core.order.OrderServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,13 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ConfigurationSingletonTest {
 
 	@Test
+	@DisplayName("스프링 컨테이너의 싱글톤 관리 확인")
 	void configurationTest() {
 		ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
 		MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
 		OrderServiceImpl orderService = ac.getBean("orderService", OrderServiceImpl.class);
 		MemberRepository memberRepository = ac.getBean("memberRepository", MemberRepository.class);
-
+		
+		//모두 같은 인스턴스를 참고하고 있다.
 		MemberRepository memberRepository1 = memberService.getMemberRepository();
 		MemberRepository memberRepository2 = orderService.getMemberRepository();
 		MemberRepository memberRepository3 = memberRepository;

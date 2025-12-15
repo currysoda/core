@@ -10,12 +10,16 @@ import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 // App의 환경설정같은것
 @Configuration
+@ComponentScan(
+	basePackages = {"hello.core"}
+)
 public class AppConfig {
-	// @Bean memberservice -> new memorymemberrepository
+	// @Bean memberservice -> new memorymemberrepository()
 	// @Bean orderservice -> new memberRepository()
 	/* 이러면 싱글톤이 깨지는가 깨지지 않는가?
 	 * 결론은 깨지지 않는다
