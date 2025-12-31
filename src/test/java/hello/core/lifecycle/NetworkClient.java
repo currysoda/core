@@ -3,10 +3,17 @@ package hello.core.lifecycle;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
+// 빈 생명주기 콜백
+// 인터페이스 예제 implements InitializingBean, DisposableBean
+// 설정 정보 예제
+// 어노테이션 예제
+// 이렇게 예제가 있다.
 @Component
-public class NetworkClient {
+public class NetworkClient  {
 
 	private String url;
 
@@ -47,4 +54,6 @@ public class NetworkClient {
 		System.out.println("NetworkClient.destroy");
 		disconnect();
 	}
-}
+	
+	
+ }

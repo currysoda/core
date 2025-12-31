@@ -32,7 +32,10 @@ public class SingletonTest {
 	}
 	
 	@Test
+	@DisplayName("싱글톤 컨테이너 사용")
 	void singletonBeanFind() {
+		
+		// 스프링 컨테이너 생성
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SingletonBean.class);
 
 		SingletonBean singletonBean1 = ac.getBean(SingletonBean.class);
@@ -41,6 +44,7 @@ public class SingletonTest {
 		System.out.println("singletonBean2 = " + singletonBean2);
 		assertThat(singletonBean1).isSameAs(singletonBean2);
 
+		// 종료
 		ac.close();
 	}
 
@@ -48,12 +52,12 @@ public class SingletonTest {
 	static class SingletonBean {
 		@PostConstruct
 		public void init() {
-			System.out.println("SingletonBean.init");
+			System.out.println("---SingletonBean.init---");
 		}
 
 		@PreDestroy
 		public void destroy() {
-			System.out.println("SingletonBean.destroy");
+			System.out.println("---SingletonBean.destroy---");
 		}
 	}
 }
