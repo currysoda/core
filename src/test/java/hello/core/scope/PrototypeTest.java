@@ -13,12 +13,17 @@ public class PrototypeTest {
 	@Test
 	void prototypeBeanFind() {
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeBean.class);
+		
+		// 다른 프로토타입 빈이 생성됨을 확인
 		System.out.println("create prototypeBean1");
 		PrototypeBean prototypeBean1 = ac.getBean(PrototypeBean.class);
+		
 		System.out.println("create prototypeBean2");
 		PrototypeBean prototypeBean2 = ac.getBean(PrototypeBean.class);
+		
 		System.out.println("prototypeBean1 = " + prototypeBean1);
 		System.out.println("prototypeBean2 = " + prototypeBean2);
+		
 		assertThat(prototypeBean1).isNotSameAs(prototypeBean2);
 
 		prototypeBean1.destroy();

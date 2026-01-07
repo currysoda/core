@@ -18,14 +18,13 @@ public class LogDemoController {
 	@RequestMapping("log-demo")
 	@ResponseBody
 	public String logDemo(HttpServletRequest request) throws Exception {
+		
 		String requestURL = request.getRequestURL().toString();
-
-		System.out.println("myLogger = " + myLogger.getClass());
 		myLogger.setRequestURL(requestURL);
-
+		
 		myLogger.log("controller test");
-		Thread.sleep(1000);
-		logDemoService.logic("test id");
+		logDemoService.logic("testId");
+		
 		return "OK";
 	}
 }
